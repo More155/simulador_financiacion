@@ -1,0 +1,3 @@
+'''
+Intefaz streamlit o consola
+'''

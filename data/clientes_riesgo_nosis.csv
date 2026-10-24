@@ -1,0 +1,51 @@
+id_cliente,cuit_cuil,nombre_apellido,edad,tipo_empleo,antiguedad_laboral_meses,ingreso_mensual_neto,compromisos_mensuales,ratio_endeudamiento_pct,situacion_bcra,score_nosis,cheques_rechazados_24m,mora_maxima_dias_12m,consultas_entidades_30d,cuota_maxima_afectable,aprobado_credito
+CLI-1001,23-43200604-7,Martín González,42,Relación de Dependencia,77,4319000,919000,21.3,1,877,0,0,1,1190000,1
+CLI-1002,27-23344769-4,Carolina Gómez,54,Relación de Dependencia,24,1224000,676000,55.2,2,377,0,106,8,0,0
+CLI-1003,27-40052925-2,Lucas Rodríguez,65,Relación de Dependencia,66,2046000,183000,8.9,1,708,0,0,1,652000,1
+CLI-1004,27-31184121-8,Valentina Fernández,47,Relación de Dependencia,86,1525000,551000,36.1,4,239,4,50,5,0,0
+CLI-1005,27-34091261-5,Mateo López,63,Relación de Dependencia,148,3381000,890000,26.3,2,890,0,0,1,872000,1
+CLI-1006,23-42373627-8,Camila Díaz,61,Monotributista,84,1779000,202000,11.4,1,920,0,0,0,552000,1
+CLI-1007,20-30788678-8,Nicolás Martínez,45,Relación de Dependencia,138,1141000,674000,59.1,4,420,2,19,3,0,0
+CLI-1008,20-23853339-6,Sofía Pérez,30,Monotributista,164,2501000,1425000,57.0,3,224,1,100,2,0,0
+CLI-1009,23-30336868-2,Santiago García,22,Monotributista,144,2884000,278000,9.6,1,860,0,5,0,912000,1
+CLI-1010,27-32261606-3,Lucía Sánchez,34,Relación de Dependencia,88,2997000,586000,19.6,1,647,0,5,1,844000,1
+CLI-1011,27-21201482-6,Facundo Romero,49,Relación de Dependencia,131,1722000,1092000,63.4,3,326,0,86,7,0,0
+CLI-1012,20-41200096-2,Julieta Sosa,63,Relación de Dependencia,61,1886000,700000,37.1,3,484,0,26,3,0,0
+CLI-1013,23-37194096-4,Tomás Álvarez,38,Relación de Dependencia,4,4874000,1007000,20.7,1,837,0,0,1,0,0
+CLI-1014,23-21119043-6,Micaela Torres,32,Relación de Dependencia,147,4331000,1196000,27.6,1,859,0,0,0,1097000,1
+CLI-1015,20-22008187-5,Agustín Ruiz,37,Relación de Dependencia,150,2119000,1100000,51.9,2,388,0,110,5,0,0
+CLI-1016,20-34764960-7,Florencia Ramírez,60,Responsable Inscripto,131,5461000,1147000,21.0,1,763,0,0,1,1510000,1
+CLI-1017,20-24341747-0,Gonzalo Flores,23,Responsable Inscripto,142,3456000,394000,11.4,1,827,0,0,2,1072000,1
+CLI-1018,27-41292704-7,Antonella Benítez,32,Responsable Inscripto,166,4583000,336000,7.3,1,957,0,0,1,1486000,1
+CLI-1019,27-33364386-8,Ezequiel Acosta,57,Monotributista,35,2927000,584000,20.0,1,747,0,0,0,820000,1
+CLI-1020,23-22269042-5,Victoria Medina,43,Relación de Dependencia,40,4754000,713000,15.0,1,716,0,0,2,1414000,1
+CLI-1021,20-35559675-2,Rodrigo Herrero,25,Relación de Dependencia,51,1819000,1186000,65.2,5,226,0,119,6,0,0
+CLI-1022,20-44555700-2,Paula Aguirre,54,Relación de Dependencia,162,1527000,207000,13.6,1,673,0,0,1,462000,1
+CLI-1023,23-20445101-7,Maximiliano Molina,53,Monotributista,153,2159000,985000,45.6,3,488,2,23,7,0,0
+CLI-1024,23-39453404-6,Rocío Castro,47,Monotributista,155,4350000,719000,16.5,1,940,0,0,1,1271000,1
+CLI-1025,27-36340850-6,Sebastián Ortiz,36,Relación de Dependencia,68,5546000,871000,15.7,1,744,0,0,1,1636000,1
+CLI-1026,27-24422201-5,Natalia Silva,63,Monotributista,56,4524000,509000,11.3,1,722,0,10,1,1405000,1
+CLI-1027,20-20449395-2,Alejandro Núñez,61,Monotributista,15,3082000,718000,23.3,1,711,0,0,1,827000,1
+CLI-1028,23-23695961-4,Romina Luna,47,Responsable Inscripto,25,3064000,275000,9.0,1,909,0,0,1,976000,1
+CLI-1029,27-35712815-8,Federico Juárez,61,Responsable Inscripto,131,2870000,431000,15.0,1,695,0,0,1,854000,1
+CLI-1030,23-20144356-5,Melina Cabrera,50,Relación de Dependencia,71,1707000,994000,58.2,3,530,1,104,8,0,0
+CLI-1031,20-36047357-4,Leandro Ríos,44,Relación de Dependencia,71,5130000,850000,16.6,1,944,0,5,0,1498000,1
+CLI-1032,23-33201904-3,Belen Ferreyra,45,Monotributista,165,4138000,988000,23.9,1,684,0,0,0,1102000,1
+CLI-1033,27-35287338-1,Ignacio Domínguez,56,Relación de Dependencia,92,2375000,1098000,46.2,4,385,0,21,3,0,0
+CLI-1034,20-39699313-7,Agustina Morales,57,Relación de Dependencia,166,1872000,910000,48.6,4,285,0,117,8,0,0
+CLI-1035,27-38132747-0,Ramiro Peralta,34,Monotributista,101,1345000,838000,62.3,5,208,0,73,2,0,0
+CLI-1036,20-34573458-8,Cecilia Giménez,28,Responsable Inscripto,130,1543000,236000,15.3,1,644,0,0,2,457000,1
+CLI-1037,20-30198499-4,Hernán Moreyra,44,Monotributista,41,1383000,686000,49.6,3,335,2,89,8,0,0
+CLI-1038,20-35883337-0,Nadia Carrizo,59,Relación de Dependencia,143,1967000,741000,37.7,3,325,0,97,6,0,0
+CLI-1039,20-43020885-3,Pablo Villalba,38,Responsable Inscripto,47,4886000,786000,16.1,1,786,0,0,2,1435000,1
+CLI-1040,27-20448345-2,Sabrina Paz,60,Relación de Dependencia,175,1831000,1089000,59.5,3,190,2,119,4,0,0
+CLI-1041,20-33449563-8,Esteban Quiroga,46,Responsable Inscripto,168,3252000,404000,12.4,1,832,0,0,2,997000,1
+CLI-1042,20-32842659-2,Guadalupe Mansilla,40,Responsable Inscripto,148,1916000,958000,50.0,2,333,1,17,8,0,0
+CLI-1043,20-25118922-7,Mariano Castillo,59,Relación de Dependencia,158,839000,401000,47.8,2,409,0,42,6,0,0
+CLI-1044,20-29179875-5,Leticia Vega,38,Relación de Dependencia,159,1139000,756000,66.4,2,199,2,61,7,0,0
+CLI-1045,27-40241658-4,Damián Vera,54,Monotributista,148,5558000,780000,14.0,1,796,0,0,0,1672000,1
+CLI-1046,20-43930984-2,Eugenia Córdoba,22,Relación de Dependencia,57,3068000,857000,27.9,1,672,0,0,0,774000,1
+CLI-1047,27-32243026-0,Bruno Ledesma,42,Relación de Dependencia,112,2219000,1420000,64.0,3,537,2,48,8,0,0
+CLI-1048,23-40112033-5,Ivana Toledo,24,Relación de Dependencia,14,4437000,1116000,25.2,2,731,0,0,2,1162000,1
+CLI-1049,23-42064334-4,Cristian Navarro,42,Monotributista,77,1513000,1019000,67.3,2,475,1,96,8,0,0
+CLI-1050,23-41752242-1,Ximena Paredes,59,Relación de Dependencia,81,3528000,947000,26.8,1,803,0,0,0,903000,1
