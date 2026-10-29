@@ -1,19 +1,22 @@
-id_tasa,marca,banco,nombre_tasa,tipo_tasa,plazo_meses,tna_pct,tea_pct,cftea_pct,quebranto_pct,cuota_pura_sin_iva_1000,cuota_promedio_1000
-TAS-01,Ford,Santander,Campaña Tasa 0% Exclusiva,Fija,12,0.0,0.0,0.0,14.5,83.33,83.33
-TAS-02,Ford,Santander,Prendario Tasa Fija Subvencionada,Fija,24,19.9,21.82,26.85,8.5,50.85,53.81
-TAS-03,Ford,Santander,Préstamo Tradicional Fijo,Fija,60,36.9,43.83,55.02,2.0,36.72,42.2
-TAS-04,Volkswagen,Santander,Prendario UVA Preferencial,UVA,36,9.5,9.92,12.15,3.0,32.03,33.45
-TAS-05,Toyota,Santander,Prendario UVA Tradicional,UVA,48,14.5,15.5,19.1,1.0,27.58,29.73
-TAS-06,Volkswagen,BBVA,Campaña Tasa 0% Lanzamiento,Fija,18,0.0,0.0,0.0,16.0,55.56,55.56
-TAS-07,Volkswagen,BBVA,Prendario Fijo Plazo Medio,Fija,36,28.5,32.55,40.4,6.0,41.63,45.87
-TAS-08,Ford,BBVA,Prendario Tradicional Fijo,Fija,48,38.5,46.06,57.95,1.5,41.11,46.84
-TAS-09,Toyota,BBVA,Línea UVA Express,UVA,24,8.9,9.27,11.35,3.5,45.64,46.96
-TAS-10,Ford,BBVA,Línea UVA Largo Plazo,UVA,60,15.9,17.11,21.15,0.0,24.26,26.63
-TAS-11,Toyota,Galicia,Financiación Fija Bonificada,Fija,12,12.5,13.24,16.2,10.5,89.08,90.94
-TAS-12,Ford,Galicia,Prendario Fijo Tradicional,Fija,36,34.0,39.84,49.8,3.0,44.67,49.73
-TAS-13,Volkswagen,Galicia,Prendario Fijo Extendido,Fija,60,39.9,48.03,60.55,1.0,38.69,44.62
-TAS-14,Toyota,Galicia,Prendario UVA Clásico,UVA,48,12.9,13.69,16.8,2.0,26.78,28.7
-TAS-15,Ford,ICBC,Campaña Fija Corto Plazo,Fija,24,22.5,24.97,30.8,7.5,52.13,55.47
-TAS-16,Volkswagen,ICBC,Prendario Tradicional ICBC,Fija,48,37.5,44.66,56.1,2.0,40.5,46.07
-TAS-17,Toyota,ICBC,Prendario UVA Bonificado,UVA,24,7.5,7.76,9.5,4.5,45.0,46.12
-TAS-18,Volkswagen,ICBC,Prendario UVA Estándar,UVA,48,13.9,14.82,18.25,1.5,27.28,29.34
+id_tasa,marca,banco,nombre_tasa,tipo_tasa,plazo_meses,tna_pct,ltv,cftea_pct,quebranto_pct,cuota_pura_sin_iva_1000,cuota_promedio_1000
+TAS-01,Ford,Santander,Campaña Tasa 0% Exclusiva,Fija,12,0.0,80,0.0,14.5,83.33,83.33
+TAS-02,Ford,Santander,Prendario Tasa Fija Subvencionada,Fija,24,19.9,80,26.85,8.5,50.85,53.81
+TAS-03,Ford,Santander,Préstamo Tradicional Fijo,Fija,60,36.9,80,55.02,2.0,36.72,42.2
+TAS-04,Volkswagen,Santander,Prendario UVA Preferencial,UVA,36,9.5,75,12.15,3.0,32.03,33.45
+TAS-05,Toyota,Santander,Prendario UVA Tradicional,UVA,48,14.5,75,19.1,1.0,27.58,29.73
+TAS-06,Volkswagen,BBVA,Campaña Tasa 0% Lanzamiento,Fija,18,0.0,75,0.0,16.0,55.56,55.56
+TAS-07,Volkswagen,BBVA,Prendario Fijo Plazo Medio,Fija,36,28.5,90,40.4,6.0,41.63,45.87
+TAS-08,Ford,BBVA,Prendario Tradicional Fijo,Fija,48,38.5,90,57.95,1.5,41.11,46.84
+TAS-09,Toyota,BBVA,Línea UVA Express,UVA,24,8.9,100,11.35,3.5,45.64,46.96
+TAS-10,Ford,BBVA,Línea UVA Largo Plazo,UVA,60,15.9,100,21.15,0.0,24.26,26.63
+TAS-11,Toyota,Galicia,Financiación Fija Bonificada,Fija,12,12.5,100,16.2,10.5,89.08,90.94
+TAS-12,Ford,Galicia,Prendario Fijo Tradicional,Fija,36,34.0,75,49.8,3.0,44.67,49.73
+TAS-13,Volkswagen,Galicia,Prendario Fijo Extendido,Fija,60,39.9,80,60.55,1.0,38.69,44.62
+TAS-14,Toyota,Galicia,Prendario UVA Clásico,UVA,48,12.9,75,16.8,2.0,26.78,28.7
+TAS-15,Ford,ICBC,Campaña Fija Corto Plazo,Fija,24,22.5,80,30.8,7.5,52.13,55.47
+TAS-16,Volkswagen,ICBC,Prendario Tradicional ICBC,Fija,48,37.5,90,56.1,2.0,40.5,46.07
+TAS-17,Toyota,ICBC,Prendario UVA Bonificado,UVA,24,7.5,90,9.5,4.5,45.0,46.12
+TAS-18,Volkswagen,ICBC,Prendario UVA Estándar,UVA,48,13.9,75,18.25,1.5,27.28,29.34
+TAS-19,Ford,Santander,Prendario Tasa Fija Subvencionada,Fija,36,24.9,80,32.1,8.5,42.15,45.5
+TAS-20,Ford,Santander,Prendario Tasa Fija Subvencionada,Fija,48,29.9,80,38.5,8.5,37.2,40.1
+TAS-21,Volkswagen,BBVA,Prendario Fijo Plazo Medio,Fija,48,31.5,90,45.2,6.0,38.1,42.5

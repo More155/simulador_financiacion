@@ -14,7 +14,7 @@ Simulador de créditos prendarios que trabaja con líneas de crédito de distint
 
 1. El usuario elige **marca**, **banco** y **línea de crédito**, e ingresa el **monto a financiar**.
 2. El sistema calcula la **cuota mensual**: `monto ÷ 1000 × cuota promedio por cada 1.000` (dato que informa el banco). Por ejemplo, $15.000.000 con una cuota promedio de 88,82 da una cuota de $1.332.300.
-3. Calcula el **quebranto**: `monto × quebranto % ÷ 100`.
+3. Calcula el **quebranto**: `monto × quebranto %`.
 4. Con los datos del cliente (ingreso, compromisos, score y antigüedad):
    - verifica si es apto con una regla simple (score de 600 o más y antigüedad de 6 meses o más, observada en los datos),
    - predice su **cuota máxima afectable** con la regresión lineal,
@@ -41,15 +41,30 @@ Simulador de créditos prendarios que trabaja con líneas de crédito de distint
 ## Estructura del proyecto
 
 ```
-data/
-  bancos_tasas.csv            Líneas de crédito por banco y marca
-  clientes_riesgo_nosis.csv   Perfiles de clientes
-datos.py                      Lectura de los CSV y conversión de tipos
-calculos.py                   Cuota, quebranto y monto máximo
-modelo.py                     Entrenamiento y evaluación de la regresión
-app.py                        Interfaz
-probar.py                     Pruebas
-requirements.txt              Librerías necesarias
+simulador_financiacion/
+│
+├── data/                         <-- Carpeta CSV
+│   ├── clientes_riesgo_nosis.csv
+│   ├── bancos_tasas.csv
+│   └── historial_tasas.csv
+│
+├── backend/                      <-- Lógica, API y Modelos
+│   ├── init.py                   <-- Módulo Python
+│   ├── main.py                   <-- Servidor FastAPI (Endpoints principales)
+│   ├── datos.py                  <-- Lectura de CSVs (Pandas + normalización + caché)
+│   ├── calculos.py               <-- Matemática financiera y función fantasma simular_por_cuit
+│   ├── modelo.py                 <-- Modelo de Machine Learning (Regresión lineal)
+│   ├── generar_clientes.py       <-- Generador del dataset random de 1.000 clientes
+│   └── generar_historial.py      <-- Generador del historial de TNA a 12 meses
+│
+├── frontend/                     <-- Interfaz visual web
+│   └── index.html                <-- UI y cliente JavaScript
+│
+├── test.py                       <-- testos 
+├── .gitignore                    <-- Archivos ignorados por Git
+├── requirements.txt              <-- Dependencias del proyecto
+└── README.md                     <-- Documentación técnica y general
+
 ```
 
 ## Instalación
@@ -57,36 +72,36 @@ requirements.txt              Librerías necesarias
 Requiere Python 3.10 o superior.
 
 ```bash
-git clone <https://github.com/More155/simulador_financiacion.git>
-cd <proyecto>
+git clone https://github.com/More155/simulador_financiacion.git
+cd simulador_financiacion
 
 python -m venv .venv
 # Windows (PowerShell):  .venv\Scripts\Activate.ps1
 # Mac/Linux:             source .venv/bin/activate
 
 pip install -r requirements.txt
-```
 
 ## Uso
-
-Siempre desde la carpeta del proyecto, con el entorno activado:
+Siempre desde la carpeta raíz del proyecto (`simulador_financiacion`), con el entorno activado:
 
 ```bash
-python modelo.py          # entrena y muestra R² y coeficientes
-python probar.py          # corre las pruebas
-streamlit run app.py      # abre el simulador en el navegador
-```
+uvicorn backend.main:app --reload    # Levanta el servidor FastAPI
+python backend/modelo.py             # Entrena y muestra métricas
+python test.py                       # Corre las pruebas internas
 
 ## Datos
 
-**`bancos_tasas.csv`** (18 líneas): marca, banco, nombre y tipo de tasa (fija o UVA), plazo en meses, TNA, TEA, CFTEA, quebranto (%) y cuota por cada $1.000 financiados.
+bancos_tasas.csv (21 líneas): marca, banco, nombre y tipo de tasa (fija o UVA), plazo en meses, TNA, TEA, CFTEA, quebranto (%) y cuota por cada $1.000 financiados.
 
-**`clientes_riesgo_nosis.csv`** (50 clientes): edad, tipo de empleo, antigüedad laboral, ingreso, compromisos, endeudamiento, situación BCRA, score, mora, cuota máxima afectable y si el crédito fue aprobado.
+clientes_riesgo_nosis.csv (1.000 clientes): edad, tipo de empleo, antigüedad laboral, ingreso, compromisos, endeudamiento, situación BCRA, score, mora, monto solicitado, plazo, cuota máxima afectable y aprobación crediticia.
+
+historial_tasas.csv (48 registros): evolución histórica mensual de la TNA por banco (últimos 12 meses) para líneas de tasa fija.
+
 
 ## Limitaciones
 
-- **Datos ficticios y pocos:** el modelo se entrena con los 28 clientes aprobados. Con tan pocos casos, las métricas de prueba no son muy confiables.
-- **R² muy alto:** la cuota máxima de la base se construyó como un porcentaje fijo del ingreso libre (ingreso menos compromisos). Por eso la regresión lo recupera casi perfecto. Con datos reales el ajuste sería menor.
-- **Aprobación por regla:** la aprobación no la predice el modelo, se decide con una regla tomada de los datos.
-- **Líneas UVA:** la cuota calculada es la cuota inicial. Se ajusta por inflación durante el plazo, por lo que la verificación contra la cuota máxima del cliente solo vale al momento de la compra.
-- **Tasas fijas y UVA no son comparables entre sí:** la TNA de una línea UVA no incluye el ajuste por inflación futura.
+Datos sintéticos: los clientes y operaciones fueron generados algorítmicamente para imitar el comportamiento del mercado crediticio real.
+
+Líneas UVA: la cuota calculada representa el valor inicial al momento del otorgamiento. Se ajusta por inflación acumulada a lo largo del plazo contratado. 
+
+Comparabilidad de tasas: la TNA de las líneas UVA no incluye el coeficiente de actualización inflacionario futuro, por lo que no debe compararse directamente de forma nominal con las líneas de Tasa Fija.

@@ -1,3 +1,0 @@
-'''
-Cuota, quebrando, monto max
-'''
