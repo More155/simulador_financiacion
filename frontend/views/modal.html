@@ -1,0 +1,16 @@
+<div id="modalError" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 space-y-4 border border-slate-200">
+        <div class="flex items-center space-x-3 text-amber-600">
+            <div class="bg-amber-100 p-3 rounded-full">
+                <i class="fa-solid fa-triangle-exclamation text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900">Validación de Datos Incorrecta</h3>
+        </div>
+        <p id="modalMensajeError" class="text-sm text-slate-600"></p>
+        <div class="flex justify-end pt-2">
+            <button onclick="cerrarModalError()" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-medium px-5 py-2.5 rounded-xl transition shadow-sm">
+                Entendido, corregir
+            </button>
+        </div>
+    </div>
+</div>

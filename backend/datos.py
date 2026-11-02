@@ -1,4 +1,4 @@
-"""Módulo de lectura de archivos CSV y conversión a DataFrames de Pandas.
+"""Módulo de lectura de archivos CSV y conversión a DataFrames de Pandas.|
 
 Lee los CSV de la carpeta data/ y los convierte en DataFrames de pandas.
 Incluye funciones de consulta para clientes (por CUIT/CUIL) y para las

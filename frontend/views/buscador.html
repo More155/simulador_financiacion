@@ -1,0 +1,204 @@
+
+<section class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+
+    <!-- Encabezado de sección -->
+    <div class="px-6 py-5 border-b border-slate-100">
+        <div class="flex items-center gap-3">
+            <div class="flex items-center justify-center w-10 h-10 rounded-xl bg-blue-50 text-blue-700">
+                <i class="fa-solid fa-id-card text-lg"></i>
+            </div>
+
+            <div>
+                <h2 class="text-base sm:text-lg font-bold text-slate-900">
+                    1. Consulta de Cliente por CUIT / CUIL
+                </h2>
+                <p class="text-xs text-slate-500 mt-0.5">
+                    Identificación y evaluación del perfil crediticio
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Buscador -->
+    <div class="p-6">
+        <div class="flex flex-col sm:flex-row gap-3">
+
+            <div class="relative flex-1">
+                <span class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-blue-500">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </span>
+
+                <input
+                    type="text"
+                    id="inputCuit"
+                    placeholder="Ingrese CUIT (ej. 20-89254563-6)"
+                    class="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl
+                           text-sm text-slate-800 placeholder:text-slate-400 font-mono
+                           outline-none transition-all duration-200
+                           focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
+                >
+            </div>
+
+            <button
+                onclick="buscarCliente()"
+                class="inline-flex items-center justify-center gap-2 px-6 py-3
+                       bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800
+                       text-white text-sm font-semibold rounded-xl
+                       shadow-sm shadow-indigo-600/20 transition-all duration-200
+                       hover:-translate-y-0.5"
+            >
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <span>Consultar Cliente</span>
+            </button>
+
+        </div>
+
+        <p class="mt-3 text-[11px] text-slate-400 flex items-center gap-1.5">
+            <i class="fa-solid fa-circle-info text-blue-400"></i>
+            Ingrese el CUIT o CUIL para obtener la información disponible del cliente.
+        </p>
+
+        <!-- Resultado de la búsqueda -->
+        <div id="resultadoCliente" class="mt-7 hidden border-t border-slate-100 pt-6">
+
+            <div class="flex items-center justify-between flex-wrap gap-2 mb-5">
+                <div>
+                    <h3 class="text-sm font-bold text-slate-900">
+                        Resultado de la consulta
+                    </h3>
+                    <p class="text-xs text-slate-500 mt-1">
+                        Información del perfil y capacidad financiera
+                    </p>
+                </div>
+
+                <span class="inline-flex items-center gap-1.5 text-[10px] font-semibold
+                             text-blue-700 bg-blue-50 border border-blue-100
+                             px-3 py-1.5 rounded-full">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    Perfil consultado
+                </span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+
+                <!-- Tarjeta 1: Datos personales -->
+                <div class="bg-white rounded-xl border border-slate-200 p-5
+                            hover:border-blue-200 transition-colors">
+
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-8 flex items-center justify-center rounded-lg bg-blue-50 text-blue-700">
+                            <i class="fa-solid fa-user text-sm"></i>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-600">
+                            Datos del titular
+                        </span>
+                    </div>
+
+                    <h3 id="resNombre" class="text-base font-bold text-slate-900">
+                        -
+                    </h3>
+
+                    <div class="mt-4 space-y-3">
+                        <div>
+                            <span class="block text-[10px] uppercase tracking-wider text-slate-400 font-semibold">
+                                CUIT / CUIL
+                            </span>
+                            <span id="resCuit" class="text-sm font-mono font-semibold text-slate-700">
+                                -
+                            </span>
+                        </div>
+
+                        <div class="pt-3 border-t border-slate-100">
+                            <span class="block text-[10px] uppercase tracking-wider text-slate-400 font-semibold">
+                                Antigüedad laboral
+                            </span>
+                            <span class="text-sm font-bold text-slate-800">
+                                <span id="resAntiguedad">-</span> meses
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 2: Perfil crediticio -->
+                <div class="bg-white rounded-xl border border-slate-200 p-5
+                            hover:border-blue-200 transition-colors">
+
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-8 flex items-center justify-center rounded-lg bg-indigo-50 text-indigo-700">
+                            <i class="fa-solid fa-chart-pie text-sm"></i>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-600">
+                            Perfil crediticio
+                        </span>
+                    </div>
+
+                    <div class="mb-4">
+                        <span class="block text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-2">
+                            Situación BCRA
+                        </span>
+
+                        <span id="badgeBcra"
+                              class="inline-flex items-center px-3 py-1.5 rounded-lg
+                                     text-xs font-bold bg-emerald-50 text-emerald-700
+                                     border border-emerald-100">
+                            Situación 1 (Normal)
+                        </span>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center gap-2">
+                            <span class="text-xs text-slate-500">Score Nosis</span>
+                            <strong id="resScore" class="text-sm font-bold text-slate-900">-</strong>
+                        </div>
+
+                        <div class="flex justify-between items-center gap-2 pt-2 border-t border-slate-100">
+                            <span class="text-xs text-slate-500">Compromisos mensuales</span>
+                            <strong id="resCompromisos" class="text-sm font-bold text-rose-600">$0</strong>
+                        </div>
+
+                        <div class="flex justify-between items-center gap-2 pt-2 border-t border-slate-100">
+                            <span class="text-xs text-slate-500">Cuota máxima afectable</span>
+                            <strong id="resCuotaMax" class="text-sm font-bold text-slate-900">$0</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 3: Capacidad financiera -->
+                <div id="cardCapacidad"
+                     class="bg-gradient-to-br from-[#0B1730] to-[#17345E]
+                            rounded-xl p-5 text-white shadow-sm
+                            flex flex-col justify-between min-h-[220px]">
+
+                    <div>
+                        <div class="flex items-center gap-2 mb-5">
+                            <div class="w-8 h-8 flex items-center justify-center rounded-lg bg-white/10 text-blue-300">
+                                <i class="fa-solid fa-wallet text-sm"></i>
+                            </div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-blue-100">
+                                Capacidad financiera
+                            </span>
+                        </div>
+
+                        <span class="block text-[10px] uppercase tracking-wider text-blue-200 font-semibold">
+                            Ingresos netos
+                        </span>
+
+                        <div id="resIngresos" class="text-2xl font-extrabold text-white mt-2">
+                            $0
+                        </div>
+                    </div>
+
+                    <div class="mt-6">
+                        <div class="inline-flex items-center gap-2 rounded-lg
+                                    bg-emerald-400/10 border border-emerald-300/20
+                                    px-3 py-2 text-[11px] font-semibold text-emerald-300">
+                            <i class="fa-solid fa-circle-check"></i>
+                            Cliente listo para simular
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
