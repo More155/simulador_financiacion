@@ -14,6 +14,10 @@ from backend.datos import (
     listar_plazos,
 )
 from backend.calculos import simular_por_cuit, ErrorDeSimulacion
+from backend.modelo import entrenar_modelo, predecir_cuota_maxima
+
+# Entrenamos el modelo una sola vez al levantar el servidor
+modelo_cuota, r2_modelo = entrenar_modelo()
 
 app = FastAPI(
     title="API Simulador de Créditos Prendarios",
@@ -102,6 +106,16 @@ def obtener_plazos(marca: str = Query(...), banco: str = Query(...), nombre_tasa
 def simular_operacion_endpoint(datos: PeticionSimulacion):
     """Ejecuta los cálculos financieros y validaciones de aptitud del cliente."""
     try:
+        # Si el cliente existe, la cuota máxima sale del modelo de regresión
+        cliente = buscar_cliente_por_cuit(datos.cuit)
+        cuota_predicha = None
+        if cliente:
+            cuota_predicha = predecir_cuota_maxima(
+                modelo_cuota,
+                cliente["ingreso_mensual_neto"],
+                cliente["compromisos_mensuales"],
+            )
+
         resultado = simular_por_cuit(
             cuit=datos.cuit,
             precio_vehiculo=datos.precio_vehiculo,
@@ -109,7 +123,8 @@ def simular_operacion_endpoint(datos: PeticionSimulacion):
             marca=datos.marca,
             banco=datos.banco,
             nombre_tasa=datos.nombre_tasa,
-            plazo=datos.plazo
+            plazo=datos.plazo,
+            cuota_maxima_predicha=cuota_predicha,
         )
         return resultado
         
