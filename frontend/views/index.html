@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% include 'head.html' %}
+</head>
+<body class="bg-slate-100 font-sans text-slate-800 antialiased min-h-screen pb-12 relative">
+
+    <!-- Navbar Superior -->
+    {% include 'header.html' %}
+
+    <main class="max-w-7xl mx-auto px-4 py-8 space-y-8">
+        <!-- Sección 1: Buscador de CUIT y Simulador -->
+        {% include 'buscador.html' %}
+        {% include 'simulador.html' %}
+    </main>
+    
+    {% include 'modal.html' %}
+
+    <!-- Script de lógica separado apuntando a la ruta estática de FastAPI -->
+    <script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+
+<section id="seccionSimulador"
+    class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden opacity-60 pointer-events-none transition-all duration-300">
+
+    <!-- ENCABEZADO -->
+    <div class="px-6 py-5 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center">
+                <i class="fa-solid fa-calculator text-lg"></i>
+            </div>
+
+            <div>
+                <h2 class="text-base sm:text-lg font-bold text-slate-900">
+                    2. Parámetros de la Simulación
+                </h2>
+                <p class="text-xs text-slate-500 mt-0.5">
+                    Configuración del vehículo y condiciones de financiación
+                </p>
+            </div>
+        </div>
+
+        <span id="estadoSimuladorAviso"
+            class="inline-flex items-center gap-2 text-xs bg-amber-50 text-amber-700 border border-amber-200 px-3 py-2 rounded-lg font-semibold w-fit">
+            <i class="fa-solid fa-lock text-amber-600"></i>
+            Busque un CUIT para habilitar
+        </span>
+    </div>
+
+
+    <div class="p-6 space-y-7">
+
+        <!-- 1. DATOS DEL VEHÍCULO -->
+        <div>
+            <div class="flex items-center gap-2 mb-4">
+                <span class="flex items-center justify-center w-6 h-6 rounded-md bg-blue-100 text-blue-800 text-xs font-bold">01</span>
+                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-700">
+                    Información del vehículo
+                </h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+                <div>
+                    <label for="inputPrecio" class="block text-xs font-semibold text-slate-600 mb-2">
+                        Precio del vehículo
+                        <span class="text-slate-400 font-normal">($ARS)</span>
+                    </label>
+
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400 text-sm">$</span>
+                        <input
+                            type="number"
+                            id="inputPrecio"
+                            value="15000000"
+                            step="500000"
+                            min="0"
+                            class="w-full pl-9 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-mono text-slate-800 outline-none transition focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
+                        >
+                    </div>
+                </div>
+
+                <div>
+                    <label for="inputAnticipo" class="block text-xs font-semibold text-slate-600 mb-2">
+                        Anticipo / Entrega
+                        <span class="text-slate-400 font-normal">($ARS)</span>
+                    </label>
+
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400 text-sm">$</span>
+                        <input
+                            type="number"
+                            id="inputAnticipo"
+                            value="5000000"
+                            step="200000"
+                            min="0"
+                            class="w-full pl-9 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-mono text-slate-800 outline-none transition focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
+                        >
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- 2. CONDICIONES DE FINANCIACIÓN -->
+        <div class="border-t border-slate-100 pt-6">
+
+            <div class="flex items-center gap-2 mb-4">
+                <span class="flex items-center justify-center w-6 h-6 rounded-md bg-blue-100 text-blue-800 text-xs font-bold">02</span>
+                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-700">
+                    Condiciones de financiación
+                </h3>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+
+                <!-- MARCA -->
+                <div>
+                    <label for="selectMarca" class="block text-xs font-semibold text-slate-600 mb-2">
+                        1. Marca del vehículo
+                    </label>
+
+                    <select
+                        id="selectMarca"
+                        onchange="cargarBancos()"
+                        class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-700 outline-none transition focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10">
+                        <option value="">Seleccione marca...</option>
+                    </select>
+                </div>
+
+                <!-- BANCO -->
+                <div>
+                    <label for="selectBanco" class="block text-xs font-semibold text-slate-600 mb-2">
+                        2. Banco / Entidad
+                    </label>
+
+                    <select
+                        id="selectBanco"
+                        onchange="cargarLineas()"
+                        class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-700 outline-none transition focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10">
+                        <option value="">Seleccione banco...</option>
+                    </select>
+                </div>
+
+                <!-- LÍNEA -->
+                <div>
+                    <label for="selectLinea" class="block text-xs font-semibold text-slate-600 mb-2">
+                        3. Línea de tasa
+                    </label>
+
+                    <select
+                        id="selectLinea"
+                        onchange="cargarPlazos()"
+                        class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-700 outline-none transition focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10">
+                        <option value="">Seleccione línea...</option>
+                    </select>
+                </div>
+
+                <!-- PLAZO -->
+                <div>
+                    <label for="selectPlazo" class="block text-xs font-semibold text-slate-600 mb-2">
+                        4. Plazo de financiación
+                    </label>
+
+                    <select
+                        id="selectPlazo"
+                        class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-700 outline-none transition focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10">
+                        <option value="">Seleccione plazo...</option>
+                    </select>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- 3. ACCIÓN PRINCIPAL -->
+        <div class="border-t border-slate-100 pt-6">
+
+            <button
+                onclick="realizarSimulacion()"
+                class="w-full flex items-center justify-center gap-3 bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-semibold py-4 px-6 rounded-xl shadow-lg shadow-indigo-600/15 transition-all duration-200 hover:-translate-y-0.5 text-sm">
+
+                <i class="fa-solid fa-wand-magic-sparkles text-indigo-200"></i>
+                Ejecutar simulación y validar aptitud
+                <i class="fa-solid fa-arrow-right text-xs"></i>
+            </button>
+
+            <p class="text-center text-[11px] text-slate-400 mt-3">
+                <i class="fa-solid fa-shield-halved mr-1"></i>
+                Los resultados se calculan según los parámetros y la información disponible.
+            </p>
+
+        </div>
+
+
+
+    </div>
+</section>
