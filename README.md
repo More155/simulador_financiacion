@@ -30,13 +30,14 @@ Simulador de créditos prendarios que trabaja con líneas de crédito de distint
 
 ## Tecnologías
 
-**Módulos de Python:** `csv` (lectura de datos), `math` (monto máximo), `datetime` (fecha de cada cotización).
+**Módulos de Python:** `random` (generación de datos sintéticos), `os` (rutas a los CSV), `math` (validación de números), `datetime` (fecha de cada cotización).
 
 | Librería | Uso |
 |---|---|
 | pandas | Manejo de los datos |
 | scikit-learn | Regresión lineal y métricas |
-| streamlit | Interfaz |
+| FastAPI + Uvicorn | API y servidor web |
+| Jinja2 | Vistas HTML |
 
 ## Estructura del proyecto
 
@@ -49,18 +50,24 @@ simulador_financiacion/
 │   └── historial_tasas.csv
 │
 ├── backend/                      <-- Lógica, API y Modelos
-│   ├── init.py                   <-- Módulo Python
+│   ├── __init__.py               <-- Módulo Python
 │   ├── main.py                   <-- Servidor FastAPI (Endpoints principales)
 │   ├── datos.py                  <-- Lectura de CSVs (Pandas + normalización + caché)
-│   ├── calculos.py               <-- Matemática financiera y función fantasma simular_por_cuit
+│   ├── calculos.py               <-- Matemática financiera y función fachada simular_por_cuit
 │   ├── modelo.py                 <-- Modelo de Machine Learning (Regresión lineal)
 │   ├── generar_clientes.py       <-- Generador del dataset random de 1.000 clientes
 │   └── generar_historial.py      <-- Generador del historial de TNA a 12 meses
 │
 ├── frontend/                     <-- Interfaz visual web
-│   └── index.html                <-- UI y cliente JavaScript
+│   ├── app.js                    <-- Cliente JavaScript (llama a la API)
+│   ├── img/                      <-- Imágenes
+│   └── views/                    <-- Vistas HTML (Jinja2)
+│       ├── inicio.html           <-- Página de inicio
+│       ├── index.html            <-- Página del simulador
+│       └── ...                   <-- Partes reutilizables (head, header, buscador, simulador, modal)
 │
-├── test.py                       <-- testos 
+├── test.py                       <-- Pruebas internas
+├── test_modelo.py                <-- Pruebas del modelo de regresión
 ├── .gitignore                    <-- Archivos ignorados por Git
 ├── requirements.txt              <-- Dependencias del proyecto
 └── README.md                     <-- Documentación técnica y general
@@ -80,14 +87,17 @@ python -m venv .venv
 # Mac/Linux:             source .venv/bin/activate
 
 pip install -r requirements.txt
+```
 
 ## Uso
 Siempre desde la carpeta raíz del proyecto (`simulador_financiacion`), con el entorno activado:
 
 ```bash
 uvicorn backend.main:app --reload    # Levanta el servidor FastAPI
-python backend/modelo.py             # Entrena y muestra métricas
+python -m backend.modelo             # Entrena y muestra métricas
 python test.py                       # Corre las pruebas internas
+python test_modelo.py                # Corre las pruebas del modelo
+```
 
 ## Datos
 
