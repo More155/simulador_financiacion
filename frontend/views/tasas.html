@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    {% include 'head.html' %}
+    <title>AML | Histórico de Tasas</title>
+</head>
+
+<body class="bg-slate-50/50 font-sans text-slate-600 antialiased min-h-screen pb-12 selection:bg-amber-300 selection:text-slate-900">
+
+    <!-- Navbar Superior -->
+    <header class="sticky top-0 z-50 bg-[#0B1730] text-white border-b border-blue-900/60 shadow-lg">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+
+        <!-- IDENTIDAD AML -->
+        <div class="flex items-center gap-4">
+
+            <!-- SEPARADOR -->
+            <div class="hidden sm:block h-11 w-px bg-blue-800"></div>
+
+            <!-- INFORMACIÓN DEL SISTEMA -->
+            <div>
+                <h1 class="text-lg sm:text-xl font-bold tracking-tight text-white">
+                    Simulador de Créditos Prendarios
+                </h1>
+
+                <p class="mt-1 text-xs font-medium text-blue-300">
+                    Motor de Originación y Evaluación Financiera
+                </p>
+            </div>
+
+        </div>
+
+        <!-- BOTONES Y ESTADO -->
+        <div class="flex flex-wrap items-center justify-center gap-3">
+
+            <!-- VOLVER AL INICIO -->
+            <a href="/"
+               class="flex items-center gap-2 px-4 py-2 rounded-xl border border-blue-700/70 bg-[#122443] text-blue-100 text-xs sm:text-sm font-semibold hover:bg-blue-800/60 hover:border-blue-500 transition duration-300">
+
+                <i class="fa-solid fa-house"></i>
+
+                <span>Volver al inicio</span>
+
+            </a>
+            <a href="/Simulador"
+               class="flex items-center gap-2 px-4 py-2 rounded-xl border border-blue-700/70 bg-[#122443] text-blue-100 text-xs sm:text-sm font-semibold hover:bg-blue-800/60 hover:border-blue-500 transition duration-300">
+
+                <span>Volver al simulador</span>
+
+            </a>
+
+            <!-- ESTADO Y VERSIÓN -->
+            <div class="flex items-center gap-2 rounded-full bg-[#122443] border border-blue-800/70 px-4 py-2">
+
+                <span class="relative flex h-2.5 w-2.5">
+                    <span class="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-50 animate-ping"></span>
+                    <span class="relative inline-flex h-full w-full rounded-full bg-emerald-400"></span>
+                </span>
+
+                <span class="text-xs font-medium text-blue-200 tracking-wide">Demo v1.0</span>
+
+            </div>
+
+        </div>
+
+    </div>
+</header>
+
+    <main class="max-w-7xl mx-auto px-6 py-8 space-y-6">
+
+        {% if sin_datos %}
+
+            <section class="bg-white rounded-2xl border border-slate-200/60 p-12 text-center shadow-2xs">
+                <div class="w-12 h-12 rounded-full bg-slate-50 border border-slate-200/60 flex items-center justify-center mx-auto text-slate-400 mb-4">
+                    <i class="fa-solid fa-database text-lg"></i>
+                </div>
+                <h2 class="font-bold text-base text-slate-800">
+                    No hay datos disponibles
+                </h2>
+                <p class="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
+                    No se encontraron registros en el historial de tasas.
+                </p>
+            </section>
+
+        {% else %}
+
+            <!-- GRÁFICO DE LÍNEAS (PLOTLY) -->
+            <section class="bg-white rounded-2xl border border-slate-200/60 p-6 shadow-2xs">
+                <div class="mb-5">
+                    <h2 class="text-base font-bold text-slate-800">
+                        Evolución histórica de tasas
+                    </h2>
+                    <p class="text-xs text-slate-500 mt-0.5">
+                        Representación gráfica de la evolución mensual de la TNA por banco.
+                    </p>
+                </div>
+
+                <div class="rounded-xl overflow-hidden border border-slate-200/40 bg-slate-50/30 p-2">
+                    {{ grafico_lineas | safe }}
+                </div>
+            </section>
+
+            <!-- TABLA COMPARATIVA -->
+            <section class="bg-white rounded-2xl border border-slate-200/60 p-6 shadow-2xs">
+                <div class="mb-5">
+                    <h2 class="text-base font-bold text-slate-800">
+                        Tasas por entidad bancaria
+                    </h2>
+                    <p class="text-xs text-slate-500 mt-0.5">
+                        Comparación mensual de TNA de todos los bancos registrados.
+                    </p>
+                </div>
+
+                <div class="overflow-x-auto rounded-xl border border-slate-200/60">
+                    <table class="w-full text-xs text-left border-collapse">
+                        <thead class="bg-slate-50/80 text-slate-500 font-semibold uppercase tracking-wider border-b border-slate-200/60">
+                            <tr>
+                                <th class="p-3.5 font-bold text-slate-700">Período</th>
+                                {% for banco in bancos %}
+                                    <th class="p-3.5 text-right font-bold text-slate-700">
+                                        {{ banco }}
+                                    </th>
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 text-slate-600">
+                            {% for fila in tabla %}
+                            <tr class="hover:bg-slate-50/50 transition">
+                                <td class="p-3.5 font-mono font-semibold text-slate-800">
+                                    {{ fila.fecha }}
+                                </td>
+                                {% for banco in bancos %}
+                                    <td class="p-3.5 text-right font-mono font-medium">
+                                        {% if fila[banco] is not none %}
+                                            {{ "%.2f"|format(fila[banco]) }}%
+                                        {% else %}
+                                            <span class="text-slate-300">-</span>
+                                        {% endif %}
+                                    </td>
+                                {% endfor %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        {% endif %}
+
+        <footer class="text-center text-[11px] text-slate-400 mt-12">
+            AML | Motor de Originación y Evaluación Financiera
+        </footer>
+
+    </main>
+
+</body>
+</html>

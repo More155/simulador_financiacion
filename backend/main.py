@@ -4,7 +4,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-
+from backend.tasas import obtener_historial_tasas
 # Importamos las funciones de tus módulos internos
 from backend.datos import (
     buscar_cliente_por_cuit,
@@ -132,3 +132,19 @@ def simular_operacion_endpoint(datos: PeticionSimulacion):
         raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error inesperado en el servidor: {str(e)}")
+    
+
+# ---------------------------------------------------------------------------
+# HISTÓRICO DE TASAS BANCARIAS
+# ---------------------------------------------------------------------------
+
+@app.get("/Tasas", response_class=HTMLResponse)
+def dashboard_tasas(request: Request):
+    try:
+        datos = obtener_historial_tasas()
+        return templates.TemplateResponse(request, "tasas.html", datos)
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error al consultar las tasas: {str(e)}"
+        )
